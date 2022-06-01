@@ -9,6 +9,8 @@ class Category{
     public $name;
     public $created_at;
 
+    public $num;
+
     // Constructor with DB
     public function __construct($db){
         $this->conn = $db;
@@ -57,9 +59,14 @@ class Category{
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Check if there is any rows, if id exists
+        $this->num = $stmt->rowCount();
+
         // Set properties
         $this->name = $row['name'];
         $this->created_at = $row['created_at'];
+
+
     }
 
 

@@ -17,8 +17,7 @@ $category = new Category($db);
 $category->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 // Get category
-
-$category -> read_single();
+$category->read_single();
 
 // Create array
 $category_arr = array(
@@ -28,8 +27,15 @@ $category_arr = array(
 );
 
 // Make JSON
-print_r(json_encode($category_arr));
 
+//echo json_encode($category_arr);
+
+if(($category->num)!=1){
+    header('Location: ../../error.php');
+}
+else {
+    print_r(json_encode($category_arr));
+}
 
 
 
